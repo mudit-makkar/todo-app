@@ -1,0 +1,52 @@
+.container {
+  display: flex;
+  justify-content: center;
+  font-size: large;
+}
+.addTaskForm {
+  padding: 20px;
+  width: 50%;
+  background-color: rgba(35, 143, 152, 0.3);
+}
+.addTaskForm h2 {
+  color: seagreen;
+}
+.addTaskForm label {
+  color: seagreen;
+  font-size: x-large;
+}
+.addTaskForm input {
+  width: 80%;
+  border: none;
+  border-bottom: 2px solid seagreen;
+  font-size: large;
+  padding: 5px;
+}
+.addTaskForm input:focus {
+  outline: none;
+  border: 2px solid seagreen;
+}
+.addTaskForm button {
+  font-size: large;
+  border: none;
+  padding: 5px 10px;
+  background-color: seagreen;
+  color: white;
+  border-radius: 2px;
+}
+.addTaskForm button:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 750px) {
+  .addTaskForm {
+    width: 100%;
+  }
+  .addTaskForm input {
+    width: 100%;
+  }
+  .actionButton {
+    font-size: small;
+  }
+}

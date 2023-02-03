@@ -1,0 +1,33 @@
+.task {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 2px double seagreen;
+  margin-bottom: 10px;
+}
+.taskStatusCheckbox {
+  width: 20px;
+  height: 20px;
+  accent-color: seagreen;
+}
+.taskStatusCheckbox:hover {
+  cursor: pointer;
+}
+.taskText {
+  flex: 80%;
+  display: inline-block;
+  padding: 10px;
+  background-color: inherit;
+  font-weight: bolder;
+  color: black;
+}
+.duedate {
+  font-size: medium;
+  font-style: italic;
+  background-color: yellow;
+}
+.overdue {
+  background-color: red;
+  color: white;
+  padding: 2px;
+}

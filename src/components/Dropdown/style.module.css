@@ -1,0 +1,12 @@
+.dropdown {
+  color: white;
+  background-color: seagreen;
+  text-align: center;
+  font-size: large;
+  border: none;
+  outline: none;
+  padding: 2px;
+}
+.dropdown:hover {
+  opacity: 0.9;
+}

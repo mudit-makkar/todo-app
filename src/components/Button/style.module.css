@@ -1,0 +1,12 @@
+.button {
+  font-size: medium;
+  border: none;
+  background-color: seagreen;
+  padding: 8px;
+  color: white;
+  border-radius: 15px;
+}
+.button:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
