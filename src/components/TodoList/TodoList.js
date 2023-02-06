@@ -24,6 +24,14 @@ export default function TodoList({ todos, setTodos, editTodo }) {
     setTodos(updatedTodos);
   };
 
+  const deleteCompletedTasks = () => {
+    let updatedTodos = todos.filter((todo) => {
+      return todo.completed === false;
+    });
+    localStorage.setItem("todos", JSON.stringify(updatedTodos)); //updating in local storage too..
+    setTodos(updatedTodos);
+  };
+
   return (
     <>
       {" "}
@@ -37,7 +45,13 @@ export default function TodoList({ todos, setTodos, editTodo }) {
         <div className={styles.container}>
           <ul className={styles.todoList}>
             <li className={styles.links}>
-              <Dropdown value={value} setValue={setValue} />
+              <Dropdown value={value} setValue={setValue} /> &nbsp;
+              <button
+                onClick={deleteCompletedTasks}
+                className={styles.deleteButton}
+              >
+                Delete Completed Tasks
+              </button>
             </li>
 
             {todos.map((todo) => {

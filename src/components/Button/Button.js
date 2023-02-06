@@ -1,5 +1,5 @@
 import styles from "./style.module.css";
-export default function Button({ handleClick, text }) {
+export default function Button({ handleClick, text, disabled }) {
   return (
     <>
       <button
@@ -7,6 +7,7 @@ export default function Button({ handleClick, text }) {
           handleClick();
         }}
         className={styles.button}
+        disabled={disabled}
       >
         {text}
       </button>

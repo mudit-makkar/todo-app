@@ -6,6 +6,8 @@ export default function Task({
   handleDeleteTodo,
   editTodo,
 }) {
+  let editButtonDisable = todo.completed ? true : false;
+
   return (
     <>
       <li key={todo.id} className={styles.task}>
@@ -37,7 +39,11 @@ export default function Task({
         </div>
         <Button text="Delete" handleClick={() => handleDeleteTodo(todo.id)} />
         &nbsp;
-        <Button text="Edit" handleClick={() => editTodo({ ...todo })} />
+        <Button
+          text="Edit"
+          handleClick={() => editTodo({ ...todo })}
+          disabled={editButtonDisable}
+        />
       </li>
     </>
   );

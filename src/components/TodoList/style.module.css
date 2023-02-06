@@ -9,6 +9,19 @@
   list-style: none;
 }
 
+.deleteButton {
+  background-color: red;
+  color: white;
+  padding: 3px;
+  outline: none;
+  border: none;
+  font-size: medium;
+}
+.deleteButton:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
 @media screen and (max-width: 750px) {
   .todoList {
     width: 100%;
