@@ -1,13 +1,14 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useReducer, useRef, useState } from "react";
 import TodoList from "../components/TodoList/TodoList";
 import AddTodo from "../components/AddTodo/AddTodo";
 import styles from "./style.module.css";
+import todosReducer from "../utils/todosReducer";
 
 export default function App() {
   const inputRef = useRef(null);
 
   //state variables
-  const [todos, setTodos] = useState([]);
+  const [todos, dispatch] = useReducer(todosReducer, []);
   const [task, setTask] = useState({
     id: Math.random(),
     taskText: "",
@@ -20,13 +21,15 @@ export default function App() {
   useEffect(() => {
     const storedTodos = localStorage.getItem("todos");
     if (storedTodos != null) {
-      console.log(storedTodos);
-      setTodos(JSON.parse(storedTodos));
+      dispatch({
+        type: "set",
+        todos: JSON.parse(storedTodos),
+      });
     }
   }, []);
 
   //edit todo -  handler for todo list component
-  const editTodo = (task) => {
+  const handleEditClick = (task) => {
     setTask(task);
     setEditing(true);
     inputRef.current.scrollIntoView({
@@ -43,13 +46,16 @@ export default function App() {
       <AddTodo
         task={task}
         setTask={setTask}
-        todos={todos}
-        setTodos={setTodos}
+        dispatch={dispatch}
         editing={editing}
         setEditing={setEditing}
         inputRef={inputRef}
       />
-      <TodoList todos={todos} setTodos={setTodos} editTodo={editTodo} />
+      <TodoList
+        todos={todos}
+        dispatch={dispatch}
+        handleEditClick={handleEditClick}
+      />
     </>
   );
 }

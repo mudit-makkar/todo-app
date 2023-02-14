@@ -1,8 +1,7 @@
 import styles from "./style.module.css";
 
 export default function AddTodo(props) {
-  const { task, setTask, todos, setTodos, editing, setEditing, inputRef } =
-    props;
+  const { task, setTask, dispatch, editing, setEditing, inputRef } = props;
   const handleChange = (e) => {
     setTask({ ...task, [e.target.name]: e.target.value });
   };
@@ -10,19 +9,23 @@ export default function AddTodo(props) {
   const handleAddTask = (e) => {
     e.preventDefault();
 
-    let updatedTodos = null;
-
+    //editing a task
     if (editing) {
-      updatedTodos = todos.map((element) => {
-        if (element.id === task.id) return task;
-        else return element;
+      dispatch({
+        type: "edit",
+        task: task,
       });
       setEditing(false);
-    } else {
-      updatedTodos = [task, ...todos];
     }
-    setTodos(updatedTodos);
-    localStorage.setItem("todos", JSON.stringify(updatedTodos));
+    //adding new task
+    else {
+      dispatch({
+        type: "add",
+        task: task,
+      });
+    }
+
+    //setting task to initial value
     setTask({
       id: Math.random(),
       taskText: "",

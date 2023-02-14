@@ -4,7 +4,7 @@ export default function Task({
   todo,
   handleTaskStatusChange,
   handleDeleteTodo,
-  editTodo,
+  handleEditClick,
 }) {
   let editButtonDisable = todo.completed ? true : false;
 
@@ -41,7 +41,7 @@ export default function Task({
         &nbsp;
         <Button
           text="Edit"
-          handleClick={() => editTodo({ ...todo })}
+          handleClick={() => handleEditClick({ ...todo })}
           disabled={editButtonDisable}
         />
       </li>

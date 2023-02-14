@@ -2,34 +2,29 @@ import styles from "./style.module.css";
 import { useState } from "react";
 import Dropdown from "../Dropdown/Dropdown";
 import Task from "../Task/Task";
-export default function TodoList({ todos, setTodos, editTodo }) {
+export default function TodoList({ todos, dispatch, handleEditClick }) {
   const [value, setValue] = useState("All"); //state variable for dropdown
 
   //task status change
   const handleTaskStatusChange = (id) => {
-    let updatedTodos = todos.map((todo) => {
-      if (todo.id === id) return { ...todo, completed: !todo.completed };
-      else return todo;
+    dispatch({
+      type: "statusChange",
+      taskId: id,
     });
-    setTodos(updatedTodos);
-    localStorage.setItem("todos", JSON.stringify(updatedTodos)); //updating in local storage too
   };
 
   //updating todos array in case of deletion of tasks
   const handleDeleteTodo = (id) => {
-    let updatedTodos = todos.filter((todo) => {
-      return todo.id !== id;
+    dispatch({
+      type: "delete",
+      taskId: id,
     });
-    localStorage.setItem("todos", JSON.stringify(updatedTodos)); //updating in local storage too..
-    setTodos(updatedTodos);
   };
 
   const deleteCompletedTasks = () => {
-    let updatedTodos = todos.filter((todo) => {
-      return todo.completed === false;
+    dispatch({
+      type: "deleteCompletedTasks",
     });
-    localStorage.setItem("todos", JSON.stringify(updatedTodos)); //updating in local storage too..
-    setTodos(updatedTodos);
   };
 
   return (
@@ -44,7 +39,7 @@ export default function TodoList({ todos, setTodos, editTodo }) {
       ) : (
         <div className={styles.container}>
           <ul className={styles.todoList}>
-            <li className={styles.links}>
+            <li className={styles.links} key="links">
               <Dropdown value={value} setValue={setValue} /> &nbsp;
               <button
                 onClick={deleteCompletedTasks}
@@ -65,7 +60,7 @@ export default function TodoList({ todos, setTodos, editTodo }) {
                     todo={todo}
                     handleDeleteTodo={handleDeleteTodo}
                     handleTaskStatusChange={handleTaskStatusChange}
-                    editTodo={editTodo}
+                    handleEditClick={handleEditClick}
                   />
                 );
               } else {
