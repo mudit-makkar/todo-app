@@ -1,7 +1,8 @@
 import styles from "./style.module.css";
 
 export default function AddTodo(props) {
-  const { task, setTask, todos, setTodos, editing, setEditing } = props;
+  const { task, setTask, todos, setTodos, editing, setEditing, inputRef } =
+    props;
   const handleChange = (e) => {
     setTask({ ...task, [e.target.name]: e.target.value });
   };
@@ -43,6 +44,7 @@ export default function AddTodo(props) {
               name="taskText"
               value={task.taskText}
               onChange={handleChange}
+              ref={inputRef}
               required
             />
           </div>

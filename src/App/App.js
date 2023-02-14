@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import TodoList from "../components/TodoList/TodoList";
 import AddTodo from "../components/AddTodo/AddTodo";
 import styles from "./style.module.css";
 
 export default function App() {
+  const inputRef = useRef(null);
+
   //state variables
   const [todos, setTodos] = useState([]);
   const [task, setTask] = useState({
@@ -27,6 +29,12 @@ export default function App() {
   const editTodo = (task) => {
     setTask(task);
     setEditing(true);
+    inputRef.current.scrollIntoView({
+      behavior: "smooth",
+      block: "end",
+      inline: "nearest",
+    });
+    inputRef.current.focus();
   };
 
   return (
@@ -39,6 +47,7 @@ export default function App() {
         setTodos={setTodos}
         editing={editing}
         setEditing={setEditing}
+        inputRef={inputRef}
       />
       <TodoList todos={todos} setTodos={setTodos} editTodo={editTodo} />
     </>
