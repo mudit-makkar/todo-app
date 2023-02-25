@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import styles from "./style.module.css";
 
 export default function AddTodo(props) {
@@ -16,6 +17,7 @@ export default function AddTodo(props) {
         task: task,
       });
       setEditing(false);
+      toast.success("Task edited!");
     }
     //adding new task
     else {
@@ -23,6 +25,7 @@ export default function AddTodo(props) {
         type: "add",
         task: task,
       });
+      toast.success("Task added!");
     }
 
     //setting task to initial value

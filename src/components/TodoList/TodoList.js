@@ -2,6 +2,8 @@ import styles from "./style.module.css";
 import { useMemo, useState } from "react";
 import Dropdown from "../Dropdown/Dropdown";
 import Task from "../Task/Task";
+import { toast } from "react-toastify";
+
 export default function TodoList({ todos, dispatch, handleEditClick }) {
   const [value, setValue] = useState("All"); //state variable for dropdown
 
@@ -19,6 +21,7 @@ export default function TodoList({ todos, dispatch, handleEditClick }) {
       type: "delete",
       taskId: id,
     });
+    toast.success("Task deleted!");
   };
 
   const deleteCompletedTasks = () => {

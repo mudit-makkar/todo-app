@@ -3,6 +3,8 @@ import TodoList from "../components/TodoList/TodoList";
 import AddTodo from "../components/AddTodo/AddTodo";
 import styles from "./style.module.css";
 import todosReducer from "../utils/todosReducer";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function App() {
   const inputRef = useRef(null);
@@ -56,6 +58,7 @@ export default function App() {
         dispatch={dispatch}
         handleEditClick={handleEditClick}
       />
+      <ToastContainer autoClose={1000} position="top-right" />
     </>
   );
 }
